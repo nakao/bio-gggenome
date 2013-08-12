@@ -2,7 +2,7 @@
 
 [![Build Status](https://secure.travis-ci.org/nakao/bioruby-gggenome.png)](http://travis-ci.org/nakao/bioruby-gggenome)
 
-Full description goes here
+Ruby client for GGGenome the Ultrafast sequence search, http://gggenome.dbcls.jp/en/
 
 Note: this software is under active development!
 
