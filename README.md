@@ -16,6 +16,16 @@ Note: this software is under active development!
 
 ```ruby
     require 'bio-gggenome'
+    db = "hg19"
+    missmatch = 1
+    query = "TTCATTGACAACATT"
+    hits = Bio::GGGenome.search(db, missmatch, query)
+    
+    hits['results'].each do |hit|
+      hit['name']     #=> 'chr1'
+      hit['position'] #=> 83462476
+      hit['strand']   #=> "+"
+    end
 ```
 
 The API doc is online. For more code examples see the test files in
