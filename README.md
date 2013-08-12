@@ -26,7 +26,7 @@ the source tree.
 Information on the source tree, documentation, examples, issues and
 how to contribute, see
 
-  http://github.com/nakao/bioruby-gggenome
+  http://github.com/nakao/bio-gggenome
 
 The BioRuby community is on IRC server: irc.freenode.org, channel: #bioruby.
 
