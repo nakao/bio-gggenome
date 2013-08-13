@@ -29,24 +29,24 @@ end
 
 hits = Bio::GGGenome.search(ARGV)
 
-puts "database:  #{hits['database']}"
-puts "summary:   #{hits['summary']}"
-puts "time:      #{hits['time']}"
-puts "error:     #{hits['error']}"
-puts "results:"
+puts "# database:  #{hits['database']}"
+puts "# summary:   #{hits['summary']}"
+puts "# time:      #{hits['time']}"
+puts "# error:     #{hits['error']}"
+print "# results:"
 
 chr = ""
 hits['results'].each do |hit|
   if hit['name'] != chr
     chr = hit['name'] 
-    print "\n\t#{chr.rjust(20)} : #{hit['strand']}"
+    print "\n#\t#{chr.rjust(20)} : #{hit['strand']}"
   else
     print hit['strand']
   end
 end
 puts
-puts
 
+puts ['#chrom', 'strand', 'start', 'end', 'hit', 'snippet_start', 'snippet', 'snippet_end'].join("\t")
 hits['results'].each do |hit|
   case hit['strand']
   when "+"
@@ -64,10 +64,10 @@ hits['results'].each do |hit|
   
   puts [hit['name'], 
         hit['strand'], 
-        hit['position'].to_s.rjust(13), " " * (left_part.size-17) + hit['position'].to_s.rjust(13) + " " * 4 + hit_part + " " * 4 + hit['position_end'].to_s].join("\t")
-  puts ["", 
-        hit['strand'], 
-        hit['snippet_pos'].to_s.rjust(13), 
+        hit['position'], 
+        hit['position_end'], 
+        hit_part, 
+        hit['snippet_pos'], 
         snippet,
-        hit['snippet_end'].to_s.rjust(13)].join("\t")
+        hit['snippet_end']].join("\t")
 end
