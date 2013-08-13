@@ -1,6 +1,6 @@
 # bio-gggenome
 
-[![Build Status](https://secure.travis-ci.org/nakao/bioruby-gggenome.png)](http://travis-ci.org/nakao/bioruby-gggenome)
+[![Build Status](https://secure.travis-ci.org/nakao/bio-gggenome.png)](http://travis-ci.org/nakao/bio-gggenome)
 
 Ruby client for GGGenome the Ultrafast sequence search, http://gggenome.dbcls.jp/en/
 
