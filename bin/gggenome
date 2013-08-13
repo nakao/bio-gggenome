@@ -34,7 +34,7 @@ puts "summary:   #{hits['summary']}"
 puts "time:      #{hits['time']}"
 puts "error:     #{hits['error']}"
 puts "results:"
-hash = Hash.new(0)
+
 chr = ""
 hits['results'].each do |hit|
   if hit['name'] != chr
