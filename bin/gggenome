@@ -48,12 +48,6 @@ puts
 
 puts ['#chrom', 'strand', 'start', 'end', 'hit', 'snippet_start', 'snippet', 'snippet_end'].join("\t")
 hits['results'].each do |hit|
-  case hit['strand']
-  when "+"
-	snippet = hit['snippet'].sub(hits['summary'][0]['query'], hits['summary'][0]['query'].downcase)
-  when "-"
-	snippet = hit['snippet'].sub(hits['summary'][1]['query'], hits['summary'][1]['query'].downcase)
-  end
   left = hit['position'] - hit['snippet_pos']
   right = left + hit['position_end'] - hit['position']
   snippet = hit['snippet']
