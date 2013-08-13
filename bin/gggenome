@@ -1,0 +1,73 @@
+#!/usr/env ruby
+#
+# gggenome command-line tool
+#
+help = "
+gggenome: Command-line tool for GGGenome the Ultrafast DNA search, 
+http://gggenome.dbcls.jp/en/
+
+ Usage:
+   gggenome hg19 1 TTCATTGACAACATTA
+   gggenome hg19 0 TTCATTGACAACATTA
+   gggenome hg19 TTCATTGACAACATTA
+   gggenome 1 TTCATTGACAACATTA
+   gggenome TTCATTGACAACATTA
+
+"
+
+require 'rubygems'
+require 'bio-gggenome'
+
+case ARGV.size
+when 1
+when 2
+when 3
+else
+  puts help
+  exit
+end
+
+hits = Bio::GGGenome.search(ARGV)
+
+puts "database:  #{hits['database']}"
+puts "summary:   #{hits['summary']}"
+puts "time:      #{hits['time']}"
+puts "error:     #{hits['error']}"
+puts "results:"
+hash = Hash.new(0)
+chr = ""
+hits['results'].each do |hit|
+  if hit['name'] != chr
+    chr = hit['name'] 
+    print "\n\t#{chr.rjust(20)} : #{hit['strand']}"
+  else
+    print hit['strand']
+  end
+end
+puts
+puts
+
+hits['results'].each do |hit|
+  case hit['strand']
+  when "+"
+	snippet = hit['snippet'].sub(hits['summary'][0]['query'], hits['summary'][0]['query'].downcase)
+  when "-"
+	snippet = hit['snippet'].sub(hits['summary'][1]['query'], hits['summary'][1]['query'].downcase)
+  end
+  left = hit['position'] - hit['snippet_pos']
+  right = left + hit['position_end'] - hit['position']
+  snippet = hit['snippet']
+  left_part = snippet[0..(left-1)]
+  hit_part = snippet[left..right]
+  right_part = snippet[(right+1)..hit['snippet'].size]
+  snippet = left_part + hit_part.downcase + right_part
+  
+  puts [hit['name'], 
+        hit['strand'], 
+        hit['position'].to_s.rjust(13), " " * (left_part.size-17) + hit['position'].to_s.rjust(13) + " " * 4 + hit_part + " " * 4 + hit['position_end'].to_s].join("\t")
+  puts ["", 
+        hit['strand'], 
+        hit['snippet_pos'].to_s.rjust(13), 
+        snippet,
+        hit['snippet_end'].to_s.rjust(13)].join("\t")
+end

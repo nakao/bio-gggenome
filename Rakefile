@@ -15,10 +15,10 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "bio-gggenome"
-  gem.homepage = "http://github.com/nakao/bioruby-gggenome"
+  gem.homepage = "http://github.com/nakao/bio-gggenome"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{GGGenome ruby client}
+  gem.description = %Q{A Ruby client for GGGenome the Ultrafast sequence search}
   gem.email = "mitsuteru.nakao@gmail.com"
   gem.authors = ["Mitsuteru Nakao"]
   # dependencies defined in Gemfile
